@@ -37,8 +37,8 @@ namespace chess
 
             Board.InsertPiece(new Tower(Color.Black, Board), new ChessPosition('c', 7).toPosition());
             Board.InsertPiece(new Tower(Color.Black, Board), new ChessPosition('c', 8).toPosition());
-            Board.InsertPiece(new King(Color.Black, Board), new ChessPosition('d', 7).toPosition());
-            Board.InsertPiece(new Tower(Color.Black, Board), new ChessPosition('d', 8).toPosition());
+            Board.InsertPiece(new Tower(Color.Black, Board), new ChessPosition('d', 7).toPosition());
+            Board.InsertPiece(new King(Color.Black, Board), new ChessPosition('d', 8).toPosition());
             Board.InsertPiece(new Tower(Color.Black, Board), new ChessPosition('e', 7).toPosition());
             Board.InsertPiece(new Tower(Color.Black, Board), new ChessPosition('e', 8).toPosition());
         }

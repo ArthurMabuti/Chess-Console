@@ -19,5 +19,7 @@
         {
             MovimentQty++;
         }
+
+        public abstract bool[,] AllowedMoviment();
     }
 }

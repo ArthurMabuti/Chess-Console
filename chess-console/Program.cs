@@ -15,6 +15,12 @@ try
         Console.WriteLine();
         Console.Write("Origem: ");
         Position initial = Screen.ReadChessPosition().toPosition();
+
+        bool[,] AvailablePositions = chessMatch.Board.piece(initial).AllowedMoviment();
+
+        Console.Clear();
+        Screen.WriteBoard(chessMatch.Board, AvailablePositions);
+
         Console.Write("Destino: ");
         Position final = Screen.ReadChessPosition().toPosition();
 
