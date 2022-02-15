@@ -5,6 +5,40 @@ namespace chess_console
 {
     internal class Screen
     {
+        public static void WriteMatch(ChessMatch match)
+        {
+            WriteBoard(match.Board);
+            Console.WriteLine();
+            WriteCapturedPieces(match);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + match.Turn);
+            Console.WriteLine("Waiting a move from: " + match.CurrentPlayer);
+        }
+
+        public static void WriteCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine("Captured Pieces:");
+            Console.Write("White: ");
+            WriteGroup(match.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Black: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            WriteGroup(match.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void WriteGroup(HashSet<Piece> group)
+        {
+            Console.Write("[");
+            foreach(Piece x in group)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
+
         public static void WriteBoard(Board board)
         {
             for (int i = 0; i < board.Lines; i++)

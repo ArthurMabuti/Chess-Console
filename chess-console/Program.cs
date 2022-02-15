@@ -12,10 +12,8 @@ try
         try
         {
             Console.Clear();
-            Screen.WriteBoard(match.Board);
-            Console.WriteLine();
-            Console.WriteLine("Turn: " + match.Turn);
-            Console.WriteLine("Waiting a move: " + match.CurrentPlayer);
+            Screen.WriteMatch(match);
+            
 
             Console.WriteLine();
             Console.Write("Origem: ");
@@ -30,7 +28,7 @@ try
             Console.WriteLine();
             Console.Write("Destino: ");
             Position final = Screen.ReadChessPosition().toPosition();
-            match.ValidateFinalPosition(initial, final);
+            match.ValidateFinalPosition(initial, final); 
 
             match.MakeMove(initial, final);
         }
