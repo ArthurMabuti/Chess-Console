@@ -3,15 +3,6 @@ using chess_console;
 using board;
 using chess;
 
-ChessPosition position = new ChessPosition('a', 1);
-ChessPosition position1 = new ChessPosition('c', 7);
-
-
-Console.WriteLine(position);
-Console.WriteLine(position.toPosition());
-Console.WriteLine(position1.toPosition());
-
-/*
 try
 {
     
@@ -20,6 +11,8 @@ try
     board.InsertPiece(new Tower(Color.White, board), new Position(0, 0));
     board.InsertPiece(new Tower(Color.White, board), new Position(1, 3));
     board.InsertPiece(new King(Color.White, board), new Position(2, 4));
+
+    board.InsertPiece(new King(Color.Black, board), new Position(3, 5));
 
     Screen.WriteBoard(board);
 
@@ -34,4 +27,3 @@ catch(Exception e)
 {
     Console.WriteLine("Unexpected error: " + e.Message);
 }
-*/
