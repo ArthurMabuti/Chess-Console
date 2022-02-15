@@ -3,8 +3,18 @@ using chess_console;
 using board;
 using chess;
 
+ChessPosition position = new ChessPosition('a', 1);
+ChessPosition position1 = new ChessPosition('c', 7);
+
+
+Console.WriteLine(position);
+Console.WriteLine(position.toPosition());
+Console.WriteLine(position1.toPosition());
+
+/*
 try
 {
+    
     Board board = new Board(8, 8);
 
     board.InsertPiece(new Tower(Color.White, board), new Position(0, 0));
@@ -14,6 +24,7 @@ try
     Screen.WriteBoard(board);
 
     Console.ReadLine();
+    
 }
 catch (BoardException e)
 {
@@ -23,3 +34,4 @@ catch(Exception e)
 {
     Console.WriteLine("Unexpected error: " + e.Message);
 }
+*/

@@ -8,6 +8,7 @@ namespace chess_console
         {
             for (int i = 0; i < board.Lines; i++)
             {
+                Console.Write(8 - i + " ");
                 for(int j = 0; j < board.Columns; j++)
                 {
                     if(board.piece(i, j) == null)
@@ -21,6 +22,7 @@ namespace chess_console
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("  a b c d e f g h");
         }
     }
 }
