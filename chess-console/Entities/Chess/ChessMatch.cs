@@ -26,6 +26,49 @@ namespace chess
             Board.InsertPiece(p, final);
         }
 
+        public void MakeMove(Position initial, Position final)
+        {
+            PerformMoviment(initial, final);
+            Turn++;
+            AlternatePlayer();
+        }
+
+        public void ValidateInitialPosition(Position pos)
+        {
+            if(Board.piece(pos) == null)
+            {
+                throw new BoardException("Don't exist piece in that position!");
+            }
+            if(CurrentPlayer != Board.piece(pos).Color)
+            {
+                throw new BoardException("The piece in that position isn't yours!");
+            }
+            if (!Board.piece(pos).ExistAllowedMoviment())
+            {
+                throw new BoardException("Don't have any available moves with that piece!");
+            }
+        }
+
+        public void ValidateFinalPosition(Position initial, Position final)
+        {
+            if (!Board.piece(initial).CanMoveTo(final))
+            {
+                throw new BoardException("Invalid moviment!");
+            }
+        }
+
+        private void AlternatePlayer()
+        {
+            if(CurrentPlayer == Color.White)
+            {
+                CurrentPlayer = Color.Black;
+            }
+            else
+            {
+                CurrentPlayer = Color.White;
+            }
+        }
+
         private void InsertPieces()
         {
             Board.InsertPiece(new Tower(Color.White, Board), new ChessPosition('c', 1).toPosition());

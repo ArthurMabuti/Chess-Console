@@ -5,26 +5,40 @@ using chess;
 
 try
 {
-    ChessMatch chessMatch = new ChessMatch();
-    
-    while (!chessMatch.Finished)
+    ChessMatch match = new ChessMatch();
+
+    while (!match.Finished)
     {
-        Console.Clear();
-        Screen.WriteBoard(chessMatch.Board);
+        try
+        {
+            Console.Clear();
+            Screen.WriteBoard(match.Board);
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + match.Turn);
+            Console.WriteLine("Waiting a move: " + match.CurrentPlayer);
 
-        Console.WriteLine();
-        Console.Write("Origem: ");
-        Position initial = Screen.ReadChessPosition().toPosition();
+            Console.WriteLine();
+            Console.Write("Origem: ");
+            Position initial = Screen.ReadChessPosition().toPosition();
+            match.ValidateInitialPosition(initial);
 
-        bool[,] AvailablePositions = chessMatch.Board.piece(initial).AllowedMoviment();
+            bool[,] AvailablePositions = match.Board.piece(initial).AllowedMoviment();
 
-        Console.Clear();
-        Screen.WriteBoard(chessMatch.Board, AvailablePositions);
+            Console.Clear();
+            Screen.WriteBoard(match.Board, AvailablePositions);
 
-        Console.Write("Destino: ");
-        Position final = Screen.ReadChessPosition().toPosition();
+            Console.WriteLine();
+            Console.Write("Destino: ");
+            Position final = Screen.ReadChessPosition().toPosition();
+            match.ValidateFinalPosition(initial, final);
 
-        chessMatch.PerformMoviment(initial, final);
+            match.MakeMove(initial, final);
+        }
+        catch (BoardException e)
+        {
+            Console.WriteLine("Move error: " + e.Message);
+            Console.ReadLine();
+        }
     }
 
 }
@@ -32,7 +46,7 @@ catch (BoardException e)
 {
     Console.WriteLine("Board error: " + e.Message);
 }
-catch(Exception e)
+catch (Exception e)
 {
     Console.WriteLine("Unexpected error: " + e.Message);
 }
