@@ -1,9 +1,10 @@
 ﻿using System;
+using chess_console;
 using board;
 
 Board board = new Board(8, 8);
 
-Console.WriteLine(board);
+Screen.WriteBoard(board);
 
 Console.ReadLine();
 

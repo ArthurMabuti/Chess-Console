@@ -12,5 +12,11 @@
             Columns = columns;
             Pieces = new Piece[lines, columns];
         }
+
+        // Allow other classes to access the position of pieces
+        public Piece piece(int line, int column)  
+        {
+            return Pieces[line, column];
+        }
     }
 }
