@@ -18,5 +18,11 @@
         {
             return Pieces[line, column];
         }
+
+        public void InsertPiece(Piece p, Position pos)
+        {
+            Pieces[pos.Line, pos.Column] = p; // In position "pos.Line, pos.Column" insert Piece 'p'
+            p.Position = pos; // Position of Piece 'p' is equal to "pos"
+        }
     }
 }
