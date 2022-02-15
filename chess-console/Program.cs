@@ -5,19 +5,22 @@ using chess;
 
 try
 {
+    ChessMatch chessMatch = new ChessMatch();
     
-    Board board = new Board(8, 8);
+    while (!chessMatch.Finished)
+    {
+        Console.Clear();
+        Screen.WriteBoard(chessMatch.Board);
 
-    board.InsertPiece(new Tower(Color.White, board), new Position(0, 0));
-    board.InsertPiece(new Tower(Color.White, board), new Position(1, 3));
-    board.InsertPiece(new King(Color.White, board), new Position(2, 4));
+        Console.WriteLine();
+        Console.Write("Origem: ");
+        Position initial = Screen.ReadChessPosition().toPosition();
+        Console.Write("Destino: ");
+        Position final = Screen.ReadChessPosition().toPosition();
 
-    board.InsertPiece(new King(Color.Black, board), new Position(3, 5));
+        chessMatch.PerformMoviment(initial, final);
+    }
 
-    Screen.WriteBoard(board);
-
-    Console.ReadLine();
-    
 }
 catch (BoardException e)
 {

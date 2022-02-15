@@ -41,7 +41,18 @@
 
             Pieces[pos.Line, pos.Column] = p; // In position "pos.Line, pos.Column" insert Piece 'p'
             p.Position = pos; // Position of Piece 'p' is equal to "pos"
+        }
 
+        public Piece RemovePiece(Position pos)
+        {
+            if(piece(pos) == null)
+            {
+                return null;
+            }
+            Piece aux = piece(pos);
+            aux.Position = null;
+            Pieces[pos.Line, pos.Column] = null;
+            return aux;
         }
 
         // This method exist just to be used in PositionValidar()
