@@ -34,7 +34,7 @@ try
         }
         catch (BoardException e)
         {
-            Console.WriteLine("Move error: " + e.Message);
+            Console.WriteLine("In-Game error: " + e.Message);
             Console.ReadLine();
         }
     }

@@ -15,6 +15,11 @@
             MovimentQty = 0;
         }
 
+        public void DecrementMovimentQty()
+        {
+            MovimentQty--;
+        }
+
         public void IncrementMovimentQty()
         {
             MovimentQty++;
