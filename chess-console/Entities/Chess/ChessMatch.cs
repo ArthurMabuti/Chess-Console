@@ -96,7 +96,7 @@ namespace chess
 
         public void ValidateFinalPosition(Position initial, Position final)
         {
-            if (!Board.Piece(initial).CanMoveTo(final))
+            if (!Board.Piece(initial).PossibleMoviment(final))
             {
                 throw new BoardException("Invalid moviment!");
             }
