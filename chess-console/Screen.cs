@@ -12,11 +12,19 @@ namespace chess_console
             WriteCapturedPieces(match);
             Console.WriteLine();
             Console.WriteLine("Turno: " + match.Turn);
-            Console.WriteLine("Waiting a move from: " + match.CurrentPlayer);
-            if (match.Check)
+            if (!match.Finished)
             {
-                Console.WriteLine("XEQUE!");
-            } 
+                Console.WriteLine("Waiting a move from: " + match.CurrentPlayer);
+                if (match.Check)
+                {
+                    Console.WriteLine("CHECK!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("CKECKMATE!");
+                Console.WriteLine("Winner: " + match.CurrentPlayer);
+            }
         }
 
         public static void WriteCapturedPieces(ChessMatch match)
@@ -50,7 +58,7 @@ namespace chess_console
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    WritePiece(board.piece(i, j));
+                    WritePiece(board.Piece(i, j));
                 }
                 Console.WriteLine();
             }
@@ -75,7 +83,7 @@ namespace chess_console
                     {
                         Console.BackgroundColor = origBackground;
                     }
-                    WritePiece(board.piece(i, j));
+                    WritePiece(board.Piece(i, j));
                     Console.BackgroundColor = origBackground;
                 }
                 Console.WriteLine();

@@ -14,13 +14,13 @@
         }
 
         // Allow other classes to access the position of pieces
-        public Piece piece(int line, int column)
+        public Piece Piece(int line, int column)
         {
             return Pieces[line, column];
         }
 
         //Overcharge from Method piece() / Do the same thing but optimized
-        public Piece piece(Position pos)
+        public Piece Piece(Position pos)
         {
             return Pieces[pos.Line, pos.Column];
         }
@@ -29,7 +29,7 @@
         public bool OccupiedSpace(Position pos)
         {
             PositionValidator(pos);
-            return piece(pos) != null;
+            return Piece(pos) != null;
         }
 
         public void InsertPiece(Piece p, Position pos)
@@ -38,21 +38,23 @@
             {
                 throw new BoardException("Position already occupied");
             }
-
             Pieces[pos.Line, pos.Column] = p; // In position "pos.Line, pos.Column" insert Piece 'p'
             p.Position = pos; // Position of Piece 'p' is equal to "pos"
         }
 
         public Piece RemovePiece(Position pos)
         {
-            if(piece(pos) == null)
+            if (Piece(pos) == null)
             {
                 return null;
             }
-            Piece aux = piece(pos);
-            aux.Position = null;
-            Pieces[pos.Line, pos.Column] = null;
-            return aux;
+            else
+            {
+                Piece aux = Piece(pos);
+                aux.Position = null;
+                Pieces[pos.Line, pos.Column] = null;
+                return aux;
+            }
         }
 
         // This method exist just to be used in PositionValidar()

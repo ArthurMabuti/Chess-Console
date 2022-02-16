@@ -16,7 +16,7 @@ namespace chess
 
         private bool CanMove(Position pos)
         {
-            Piece p = Board.piece(pos);
+            Piece p = Board.Piece(pos);
             return p == null || p.Color != Color;
         }
 

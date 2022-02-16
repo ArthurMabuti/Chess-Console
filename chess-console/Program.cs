@@ -20,7 +20,7 @@ try
             Position initial = Screen.ReadChessPosition().toPosition();
             match.ValidateInitialPosition(initial);
 
-            bool[,] AvailablePositions = match.Board.piece(initial).AllowedMoviment();
+            bool[,] AvailablePositions = match.Board.Piece(initial).AllowedMoviment();
 
             Console.Clear();
             Screen.WriteBoard(match.Board, AvailablePositions);
@@ -38,6 +38,8 @@ try
             Console.ReadLine();
         }
     }
+    Console.Clear();
+    Screen.WriteMatch(match);
 
 }
 catch (BoardException e)
