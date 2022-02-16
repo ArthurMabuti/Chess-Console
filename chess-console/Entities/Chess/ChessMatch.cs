@@ -39,7 +39,7 @@ namespace chess
             }
 
             // #SpecialPlay Castling - King's Side
-            if(p is King && final.Column == initial.Column + 2)
+            if (p is King && final.Column == initial.Column + 2)
             {
                 Position initialR = new Position(initial.Line, initial.Column + 3);
                 Position finalR = new Position(initial.Line, initial.Column + 1);
@@ -115,7 +115,7 @@ namespace chess
                 {
                     Piece pawn = Board.RemovePiece(final);
                     Position posP;
-                    if(p.Color == Color.White)
+                    if (p.Color == Color.White)
                     {
                         posP = new Position(3, final.Column);
                     }
@@ -138,6 +138,22 @@ namespace chess
                 UndoMoviment(initial, final, CapturedPiece);
                 throw new BoardException("You can't put yourself in Check!");
             }
+
+            Piece p = Board.Piece(final);
+
+            // #SpecialPlay Promotion
+            if (p is Pawn)
+            {
+                if ((p.Color == Color.White && final.Line == 0) || (p.Color == Color.Black && final.Line == 7))
+                {
+                    p = Board.RemovePiece(final);
+                    Piece.Remove(p);
+                    Piece queen = new Queen(p.Color, Board);
+                    Board.InsertPiece(queen, final);
+                    Piece.Add(queen);
+                }
+            }
+
             if (InCheck(Opponent(CurrentPlayer)))
             {
                 Check = true;
@@ -156,10 +172,9 @@ namespace chess
                 AlternatePlayer();
             }
 
-            Piece p = Board.Piece(final);
 
             // #SpecialPlay En Passant
-            if(p is Pawn && (final.Line == initial.Line - 2 || final.Line == initial.Line + 2))
+            if (p is Pawn && (final.Line == initial.Line - 2 || final.Line == initial.Line + 2))
             {
                 VulnerableEnPassant = p;
             }
