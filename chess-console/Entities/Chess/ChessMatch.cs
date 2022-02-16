@@ -35,6 +35,25 @@ namespace chess
             {
                 Captured.Add(CapturedPiece);
             }
+
+            // #SpecialPlay Castling - King's Side
+            if(p is King && final.Column == initial.Column + 2)
+            {
+                Position initialR = new Position(initial.Line, initial.Column + 3);
+                Position finalR = new Position(initial.Line, initial.Column + 1);
+                Piece R = Board.RemovePiece(initialR);
+                R.IncrementMovimentQty();
+                Board.InsertPiece(R, finalR);
+            }
+            // #SpecialPlay Castling - Queen's Side
+            if (p is King && final.Column == initial.Column - 2)
+            {
+                Position initialR = new Position(initial.Line, initial.Column - 4);
+                Position finalR = new Position(initial.Line, initial.Column - 1);
+                Piece R = Board.RemovePiece(initialR);
+                R.IncrementMovimentQty();
+                Board.InsertPiece(R, finalR);
+            }
             return CapturedPiece;
         }
 
@@ -48,6 +67,26 @@ namespace chess
                 Captured.Remove(capturedPiece);
             }
             Board.InsertPiece(p, initial);
+
+            // #SpecialPlay Castling - King's Side
+            if (p is King && final.Column == initial.Column + 2)
+            {
+                Position initialR = new Position(initial.Line, initial.Column + 3);
+                Position finalR = new Position(initial.Line, initial.Column + 1);
+                Piece R = Board.RemovePiece(finalR);
+                R.DecrementMovimentQty();
+                Board.InsertPiece(R, initialR);
+            }
+
+            // #SpecialPlay Castling - Queen's Side
+            if (p is King && final.Column == initial.Column - 2)
+            {
+                Position initialR = new Position(initial.Line, initial.Column - 4);
+                Position finalR = new Position(initial.Line, initial.Column - 1);
+                Piece R = Board.RemovePiece(finalR);
+                R.DecrementMovimentQty();
+                Board.InsertPiece(R, initialR);
+            }
         }
 
         public void MakeMove(Position initial, Position final)
@@ -238,7 +277,7 @@ namespace chess
             InsertNewPiece('c', 1, new Bishop(Color.White, Board));
             InsertNewPiece('f', 1, new Bishop(Color.White, Board));
             InsertNewPiece('d', 1, new Queen(Color.White, Board));
-            InsertNewPiece('e', 1, new King(Color.White, Board));
+            InsertNewPiece('e', 1, new King(Color.White, Board, this));
 
             InsertNewPiece('a', 7, new Pawn(Color.Black, Board));
             InsertNewPiece('b', 7, new Pawn(Color.Black, Board));
@@ -255,7 +294,7 @@ namespace chess
             InsertNewPiece('c', 8, new Bishop(Color.Black, Board));
             InsertNewPiece('f', 8, new Bishop(Color.Black, Board));
             InsertNewPiece('d', 8, new Queen(Color.Black, Board));
-            InsertNewPiece('e', 8, new King(Color.Black, Board));
+            InsertNewPiece('e', 8, new King(Color.Black, Board, this));
         }
     }
 }
