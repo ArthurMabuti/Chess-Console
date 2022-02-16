@@ -2,16 +2,16 @@
 
 namespace chess
 {
-    internal class Tower : Piece
+    internal class Bishop : Piece
     {
-        public Tower(Color color, Board board)
+        public Bishop(Color color, Board board)
             : base(color, board)
         {
         }
 
         public override string ToString()
         {
-            return "T";
+            return "B";
         }
 
         private bool CanMove(Position pos)
@@ -26,8 +26,8 @@ namespace chess
 
             Position pos = new Position(0, 0);
 
-            // Up
-            pos.SetValues(Position.Line - 1, Position.Column);
+            // Up-Left
+            pos.SetValues(Position.Line - 1, Position.Column - 1);
             while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -35,11 +35,11 @@ namespace chess
                 {
                     break;
                 }
-                pos.Line = pos.Line - 1;
+                pos.SetValues(pos.Line - 1, pos.Column - 1);
             }
 
-            // Down
-            pos.SetValues(Position.Line + 1, Position.Column);
+            // Up-Right
+            pos.SetValues(Position.Line - 1, Position.Column + 1);
             while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -47,11 +47,11 @@ namespace chess
                 {
                     break;
                 }
-                pos.Line = pos.Line + 1;
+                pos.SetValues(pos.Line - 1, pos.Column + 1);
             }
 
-            // Right
-            pos.SetValues(Position.Line, Position.Column + 1);
+            // Down-Left
+            pos.SetValues(Position.Line + 1, Position.Column - 1);
             while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -59,11 +59,11 @@ namespace chess
                 {
                     break;
                 }
-                pos.Column = pos.Column + 1;
+                pos.SetValues(pos.Line + 1, pos.Column - 1);
             }
 
-            // Left
-            pos.SetValues(Position.Line, Position.Column - 1);
+            // Down-Right
+            pos.SetValues(Position.Line + 1, Position.Column + 1);
             while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -71,7 +71,7 @@ namespace chess
                 {
                     break;
                 }
-                pos.Column = pos.Column - 1;
+                pos.SetValues(pos.Line + 1, pos.Column + 1);
             }
 
             return mat;

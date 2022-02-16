@@ -222,12 +222,40 @@ namespace chess
 
         private void InsertPieces()
         {
-            InsertNewPiece('c', 1, new Tower(Color.White, Board));
-            InsertNewPiece('d', 1, new King(Color.White, Board));
-            InsertNewPiece('h', 7, new Tower(Color.White, Board));
+            // White ones
+            InsertNewPiece('a', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('b', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('c', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('d', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('e', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('f', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('g', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('h', 2, new Pawn(Color.White, Board));
+            InsertNewPiece('a', 1, new Rook(Color.White, Board));
+            InsertNewPiece('h', 1, new Rook(Color.White, Board));
+            InsertNewPiece('b', 1, new Knight(Color.White, Board));
+            InsertNewPiece('g', 1, new Knight(Color.White, Board));
+            InsertNewPiece('c', 1, new Bishop(Color.White, Board));
+            InsertNewPiece('f', 1, new Bishop(Color.White, Board));
+            InsertNewPiece('d', 1, new Queen(Color.White, Board));
+            InsertNewPiece('e', 1, new King(Color.White, Board));
 
-            InsertNewPiece('b', 8, new Tower(Color.Black, Board));
-            InsertNewPiece('a', 8, new King(Color.Black, Board));
+            InsertNewPiece('a', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('b', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('c', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('d', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('e', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('f', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('g', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('h', 7, new Pawn(Color.Black, Board));
+            InsertNewPiece('a', 8, new Rook(Color.Black, Board));
+            InsertNewPiece('h', 8, new Rook(Color.Black, Board));
+            InsertNewPiece('b', 8, new Knight(Color.Black, Board));
+            InsertNewPiece('g', 8, new Knight(Color.Black, Board));
+            InsertNewPiece('c', 8, new Bishop(Color.Black, Board));
+            InsertNewPiece('f', 8, new Bishop(Color.Black, Board));
+            InsertNewPiece('d', 8, new Queen(Color.Black, Board));
+            InsertNewPiece('e', 8, new King(Color.Black, Board));
         }
     }
 }
